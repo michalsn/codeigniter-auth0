@@ -17,6 +17,8 @@ Basic integration for [Auth0](https://auth0.com/) authentication.
 
     composer require michalsn/codeigniter-auth0
 
+    composer require guzzlehttp/guzzle guzzlehttp/psr7 http-interop/http-factory-guzzle
+
 #### Manually
 
 In the example below we will assume, that files from this project will be located in `app/ThirdParty/auth0` directory.
@@ -51,6 +53,21 @@ Also add the required helper to the same file under `$files` array:
 
     // ...
 ```
+
+You will still need to install some dependencies:
+
+    composer require guzzlehttp/guzzle guzzlehttp/psr7 http-interop/http-factory-guzzle
+
+### Database
+
+    php spark migrate --all
+
+### Config
+
+See what configuration variables can be set by looking at the `src/Config/Auth0.php` file and use the `.env` file to set them.
+
+See the [getting started](https://auth0.com/docs/libraries/auth0-php) article for reference.
+
 ### Routes
 
 - `login`
