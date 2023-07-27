@@ -6,15 +6,20 @@ use CodeIgniter\Config\BaseConfig;
 
 class Auth0 extends BaseConfig
 {
-    public ?string $domain         = null;
-    public ?string $customDomain   = null;
-    public ?string $clientId       = null;
-    public ?string $clientSecret   = null;
-    public ?string $cookieSecret   = null;
-    public bool $cookieSecure      = true;
-    public ?string $redirectUri    = null;
-    public array $scope            = ['openid', 'profile', 'email'];
+    public ?string $domain       = null;
+    public ?string $customDomain = null;
+    public ?string $clientId     = null;
+    public ?string $clientSecret = null;
+    public ?string $cookieSecret = null;
+    public bool $cookieSecure    = true;
+    public ?string $redirectUri  = null;
+    public array $scope          = ['openid', 'profile', 'email'];
+
+    /**
+     * User profile defaults
+     */
     public string $defaultLanguage = 'pl';
+
     public string $defaultTimezone = 'Europe/Warsaw';
 
     public function afterCallbackSuccess()

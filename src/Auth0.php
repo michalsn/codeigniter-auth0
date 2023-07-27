@@ -75,7 +75,7 @@ class Auth0
         return redirect()->to($url);
     }
 
-    private function formatUserProfile(array $profile, bool $update = false): array
+    protected function formatUserProfile(array $profile, bool $update = false): array
     {
         $data = [
             'identity'      => $profile['sub'],
