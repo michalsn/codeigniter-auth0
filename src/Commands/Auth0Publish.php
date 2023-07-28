@@ -12,9 +12,9 @@ use Throwable;
  */
 class Auth0Publish extends BaseCommand
 {
-    protected $group       = 'Auth0';
-    protected $name        = 'Auth0:publish';
-    protected $description = 'Publish Kinde config file into the current application.';
+    protected string $group       = 'Auth0';
+    protected string $name        = 'Auth0:publish';
+    protected string $description = 'Publish Kinde config file into the current application.';
 
     /**
      * @return void
