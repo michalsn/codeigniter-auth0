@@ -23,3 +23,12 @@ function user(?string $key = null)
 
     return $key === null ? $user : $user[$key] ?? null;
 }
+
+function auth0_user()
+{
+    if (service('auth0')->isAuthenticated()) {
+        return service('auth0')->getUser();
+    }
+
+    return null;
+}

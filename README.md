@@ -83,6 +83,7 @@ See the [getting started](https://auth0.com/docs/libraries/auth0-php) article fo
 - `authenticated()` will check if current user is authenticated
 - `user_id()` will return current user ID (database)
 - `user()` will return current user info (database)
+- `auth0_user()` will return the Auth0 user array or `null`
 
 ### Example
 
