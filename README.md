@@ -78,6 +78,12 @@ See the [getting started](https://auth0.com/docs/libraries/auth0-php) article fo
 
 - `auth0Stateful`
 
+### Commands
+
+To copy config file to the application namespace.
+
+    php spark auth0:publish
+
 ### Helper functions
 
 - `authenticated()` will check if current user is authenticated
