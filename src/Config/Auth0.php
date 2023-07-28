@@ -3,6 +3,7 @@
 namespace Michalsn\CodeIgniterAuth0\Config;
 
 use CodeIgniter\Config\BaseConfig;
+use CodeIgniter\I18n\Time;
 
 class Auth0 extends BaseConfig
 {
@@ -40,5 +41,26 @@ class Auth0 extends BaseConfig
     public function logoutCallbackUri()
     {
         return site_url('/');
+    }
+
+    public function formatUserProfile(array $profile, bool $update = false): array
+    {
+        $data = [
+            'identity'      => $profile['sub'],
+            'username'      => $profile['nickname'] ?? $profile['name'],
+            'email'         => $profile['email'],
+            'picture'       => $profile['picture'],
+            'language'      => $profile['locale'] ?? $this->defaultLanguage,
+            'timezone'      => $this->defaultTimezone,
+            'last_login_at' => Time::now('UTC')->format('Y-m-d H:i:s'),
+        ];
+
+        if ($update) {
+            unset(
+                $data['username'], $data['language'], $data['timezone']
+            );
+        }
+
+        return $data;
     }
 }

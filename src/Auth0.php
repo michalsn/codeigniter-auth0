@@ -6,7 +6,6 @@ use Auth0\SDK\Auth0 as Auth0SDK;
 use Auth0\SDK\Configuration\SdkConfiguration;
 use Auth0\SDK\Store\SessionStore;
 use BadMethodCallException;
-use CodeIgniter\I18n\Time;
 use Michalsn\CodeIgniterAuth0\Config\Auth0 as Auth0Config;
 use Michalsn\CodeIgniterAuth0\Models\UserModel;
 
@@ -47,10 +46,10 @@ class Auth0
             $userModel = model(UserModel::class);
 
             if ($userModel->findByIdentity($profile['sub'])) {
-                $user = $this->formatUserProfile($profile, true);
+                $user = $this->config->formatUserProfile($profile, true);
                 $userModel->updateByIdentity($profile['sub'], $user);
             } else {
-                $user = $this->formatUserProfile($profile);
+                $user = $this->config->formatUserProfile($profile);
                 $userModel->insert($user);
             }
 
@@ -73,27 +72,6 @@ class Auth0
         $url = $this->auth0->logout($this->config->logoutCallbackUri());
 
         return redirect()->to($url);
-    }
-
-    protected function formatUserProfile(array $profile, bool $update = false): array
-    {
-        $data = [
-            'identity'      => $profile['sub'],
-            'username'      => $profile['nickname'] ?? $profile['name'],
-            'email'         => $profile['email'],
-            'picture'       => $profile['picture'],
-            'language'      => $profile['locale'] ?? $this->config->defaultLanguage,
-            'timezone'      => $this->config->defaultTimezone,
-            'last_login_at' => Time::now('UTC')->format('Y-m-d H:i:s'),
-        ];
-
-        if ($update) {
-            unset(
-                $data['username'], $data['language'], $data['timezone']
-            );
-        }
-
-        return $data;
     }
 
     public function __call(string $name, array $args)
