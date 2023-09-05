@@ -14,7 +14,7 @@ class Auth0Publish extends BaseCommand
 {
     protected $group       = 'Auth0';
     protected $name        = 'Auth0:publish';
-    protected $description = 'Publish Kinde config file into the current application.';
+    protected $description = 'Publish Auth0 config file into the current application.';
 
     /**
      * @return void
