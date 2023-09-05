@@ -81,6 +81,5 @@ class Auth0
         }
 
         throw new BadMethodCallException("Method {$name} does not exist in Auth0 SDK.");
-
     }
 }
